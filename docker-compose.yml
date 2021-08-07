@@ -1,0 +1,16 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    tty: true
+    stdin_open: true
+    environment:
+      - NODE_ENV=production
+      - CHOKIDAR_USEPOLLING=true
+    volumes:
+      - ./:/usr/src/app
+    command: sh -c "cd buyma-collect && yarn start"
+    ports:
+      - "3000:3000"
